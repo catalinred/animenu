@@ -1,0 +1,114 @@
+@media screen and (max-width: 480px) {
+
+	%revert-list {
+		visibility: visible;
+		opacity: 1;
+		display: none;	
+	}
+
+	.animenu {
+		#{$input}:checked ~ label,
+		#{$input} ~ label:hover, {
+			color: lighten($baseMenuColor, 80%);
+		}		
+		label {		
+			border: 1px solid darken($baseMenuBackground, 5%);
+			@include menu-background($baseMenuBackground);
+			@include box-shadow(0 1px 0 rgba(255, 255, 255, .2) inset);
+			color: $baseMenuColor;
+			@include text-shadow(0 1px 0 $baseMenuBackground);
+			@include border-radius(3px);
+			text-transform: uppercase;
+			position:relative;
+			display:block;
+			padding: $gutter 3 * $gutter;
+			&:before {
+				position: absolute;
+				left: $gutter / 2;
+				top: $gutter / 5; 
+				content: "\2261";
+				font-size: 2em;
+			}
+		}		
+		// First level -> main menu items
+		// <nav class="animenu">
+		//		<ul></ul>
+		//	</nav>			
+		> ul {
+			position: relative;
+			border-color: $baseMenuBackground;
+			margin: $gutter / 2 0 !important;
+			padding: $gutter / 4;
+			@include box-shadow(none);
+			@include menu-background($baseMenuBackground, false);
+			@include pseudo-triangle(6px, 2);
+			@extend %revert-list;
+			li {
+				display: block;
+			}									
+			> li {
+				float: none;
+				border: 0;
+				@include box-shadow(none);
+				@include menu-background($baseMenuBackground, false);
+				> a {
+					float: none;
+					display: block;
+					padding: $gutter;
+				}
+			}
+			// Second level
+			// <nav class="animenu">
+			//		<ul>
+			//			<ul></ul>
+			//		</ul>
+			//	</nav>								
+			ul {
+				position: static;
+				@include border-radius(0);
+				@include menu-background(lighten($baseMenuBackground, 10%), false);
+				margin: 0;
+				@extend %revert-list;
+				@include transition-property("none");
+				li {
+					&:first-child > a {
+						@include border-radius(0);
+						&:after {
+							content: none;
+						}
+					}
+					&:last-child > a {
+						@include border-radius(0);
+					}
+				}							
+				a {
+					padding-left: 2 * $gutter;
+					display: block;
+					width: auto;					
+				}						
+			} // end second level
+		} // end first level
+		#{$input}:checked {		
+			~ ul {
+				display: block;								
+				ul {
+					display: block;					
+				}
+			} 
+		} // end #{$input}:checked
+	} // end .animenu
+	
+} //end @media
+
+
+// Adjust menu when resizing [in this case].
+// To be updated depending of menu items length.  
+@media screen and (max-width: 600px) {
+	.animenu > ul {
+		> li {
+			> a {
+				padding: $gutter 2 * $gutter;
+			}
+		}
+	}
+}
