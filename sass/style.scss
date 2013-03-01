@@ -42,6 +42,17 @@ $input: "input[type=checkbox]";  	// Checkbox hack selector
 	clear:both;		
 }
 
+// Fix for Android
+// http://timpietrusky.com/advanced-checkbox-hack
+body { 
+	-webkit-animation: bugfix infinite 1s; 
+}
+
+@-webkit-keyframes bugfix { 
+	from { padding: 0; } 
+	to { padding: 0; } 
+}
+
 // New box model, small reset, global stuff
 .animenu {
 	font: bold 13px Arial, Helvetica;
