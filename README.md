@@ -1,11 +1,13 @@
-# Animenu - a responsive dropdown navigation made with SCSS #
+# Animenu
 
-[red-team-design.com](http://www.red-team-design.com/)
+A responsive dropdown navigation made with SCSS
+
+http://www.red-team-design.com/animenu-a-responsive-dropdown-navigation-made-with-sass
 	
-## Browser compatibility ##
+## Browser compatibility
 
 Animenu works in all major browsers. IE8+.
 
-## License ##
+## License
 
 Public domain: [http://unlicense.org](http://unlicense.org)
