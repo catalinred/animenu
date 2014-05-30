@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Animenu - a responsive dropdown navigation made with SCSS</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
-	<!--[if lt IE 9]>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2pre/html5shiv.js"></script>
-	<![endif]-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Animenu - a responsive dropdown navigation made with SCSS</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" href="css/style.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2pre/html5shiv.js"></script>
+  <![endif]-->
 </head>
 <body>
 
-<nav class="animenu">	
-    <input type="checkbox" id="button">
-    <label for="button" onclick>Menu</label>
-	<ul>
-		<li>
-			<a href="#">Item 1</a>
-			<ul>
-				<li><a href="">Sub Item 1</a></li>
-				<li><a href="">Sub Item 2</a></li>
-				<li><a href="">Sub Item 3</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#">Item 2</a>
-			<ul>
-				<li><a href="">Sub Item 1</a></li>
-				<li><a href="">Sub Item 2</a></li>
-				<li><a href="">Sub Item 3</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#">Item 3</a>
-			<ul>
-				<li><a href="">Sub Item 1</a></li>
-				<li><a href="">Sub Item 2</a></li>
-				<li><a href="">Sub Item 3</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#">Item 4</a>
-			<ul>
-				<li><a href="">Sub Item 1</a></li>
-				<li><a href="">Sub Item 2</a></li>
-				<li><a href="">Sub Item 3</a></li>
-			</ul>
-		</li>						
-	</ul>
+<nav class="animenu"> 
+  <button class="animenu__toggle">
+    &#x2261;
+  </button>
+  <ul class="animenu__nav">
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="#">Archive</a>
+      <ul class="animenu__nav__child">
+        <li><a href="">Sub Item 1</a></li>
+        <li><a href="">Sub Item 2</a></li>
+        <li><a href="">Sub Item 3</a></li>
+      </ul>
+    </li>     
+    <li>
+      <a href="#">Categories</a>
+      <ul class="animenu__nav__child">
+        <li><a href="">Sub Item 1</a></li>
+        <li><a href="">Sub Item 2</a></li>
+        <li><a href="">Sub Item 3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">About</a>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+    </li>                 
+  </ul>
 </nav>
 
+<script src="js/animenu.js"></script>
+
 </body>
-</html>	
+</html>

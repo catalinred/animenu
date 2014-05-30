@@ -1,164 +1,216 @@
-@import "compass/css3";
-
 // Variables
-$subMenuItemWidth: 175px;			// Minimum width for submenus' items
-$baseMenuBackground: #111;			// Base color theme
-$secondaryMenuBackground: #0186ba;	// Secondary color (highlights, triangles...)
-$baseMenuColor: #999;				// Proper menu items color
-$gutter: 1em;						// Base gutter
-$input: "input[type=checkbox]";  	// Checkbox hack selector
+$baseMenuBackground: #111;          // Base color theme
+$secondaryMenuBackground: #0186ba;  // Secondary color (highlights, triangles...)
+$gutter: 10px;                      // Base gutter
 
-// Menu background mixin
-@mixin menu-background($color, $menu-gradient: true) {
-	background-color: $color;
-	@if $menu-gradient == true {
-		@include background-image(linear-gradient(rgba(255, 255, 255, .2),
-												  rgba(255, 255, 255, 0)));
-	}
-	@else {
-		background-image: none;
-	}	
+// Latest CSS box model 
+*, *:after, *:before {
+  box-sizing: border-box; 
 }
 
-// Menu background mixin
-// The $size argument specifies the actual size of the triangle
-// The $shift-left helps on horizontal positioning.
-@mixin pseudo-triangle($size, $shift-left) {
-	&:after {
-		content: '';
-		position: absolute;
-		left: $shift-left * $gutter;
-		top: -$size * 2;
-		border: $size solid transparent;
-		border-bottom-color: inherit;
-	}
+// The classic hamburger icon
+.animenu__toggle {
+  display: none;
 }
 
-// Shortest clearfix. Ever. IE8+. 
-// http://www.css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
-%cf:after {
-	content:"";
-	display:table;
-	clear:both;		
-}
-
-// Fix for Android
-// http://timpietrusky.com/advanced-checkbox-hack
-body { 
-	-webkit-animation: bugfix infinite 1s; 
-}
-
-@-webkit-keyframes bugfix { 
-	from { padding: 0; } 
-	to { padding: 0; } 
-}
-
-// New box model, small reset, global stuff
+// Clear some defaults
 .animenu {
-	font: bold 13px Arial, Helvetica;
-	* {
-		@include box-sizing(border-box);
-	}
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		@include border-radius(3px);
-	}
-	li {
-		position: relative;
-		&:hover {
-			> ul {
-				opacity: 1;
-				visibility: visible;
-				margin: 0;				
-			}
-			> a {
-				color: lighten($baseMenuColor, 80%);
-			}
-		}
-	}
-	#{$input} {
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	label {
-		display:none;
-		cursor: pointer;
-		user-select:none;
-	}							
+  ul {
+    padding: 0;
+    list-style: none;    
+    font: 0px 'Open Sans', Arial, Helvetica;    
+  }
+
+  li, a {
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  a {
+    color: lighten($baseMenuBackground, 60%);
+    text-decoration: none;
+  }
 }
 
 // First level -> main menu items
 // <nav class="animenu">
-//		<ul></ul>
-//	</nav>
-.animenu > ul {
-	border: 1px solid darken($baseMenuBackground, 5%);
-	@include menu-background($baseMenuBackground);	
-	@include box-shadow(0 1px 0 rgba(255, 255, 255, .2) inset);
-	@extend %cf;
-	> li {
-		float: left;
-		border-right: 1px solid lighten($baseMenuBackground, 5%);
-		@include box-shadow(1px 0 0 lighten($baseMenuBackground, 20%));
-		> a {
-			float: left;
-			padding: $gutter 3 * $gutter;
-			text-transform: uppercase;	
-		}
-	}
-	a {
-		color: $baseMenuColor;
-		text-decoration: none;
-		@include text-shadow(0 1px 0 $baseMenuBackground);		
-	}
+//    <ul class="animenu__nav">
+//    ...
+//    </ul>
+//  </nav>
+.animenu__nav {
+  background-color: $baseMenuBackground;        
 
-	// Second level
-	// <nav class="animenu">
-	//		<ul>
-	//			<ul></ul>
-	//		</ul>
-	//	</nav>
-	ul {
-		position: absolute;
-		top: 100%; left: 0;
-		z-index: 1;		
-		opacity: 0;
-		visibility: hidden;
-		margin: 2 * $gutter 0 0 0;
-		@include menu-background(lighten($baseMenuBackground, 15%), false);    
-		@include transition-property("margin, opacity");
-		@include transition-duration(".15s");
-		@include transition-timing-function(ease-in-out);
-		li {
-			display: block;
-			@include box-shadow(0 1px 0 lighten($baseMenuBackground, 5%), 
-								0 2px 0 lighten($baseMenuBackground, 25%));
-			&:first-child > a {
-				@include border-radius(3px 3px 0 0);
-				@include pseudo-triangle(6px, 4);
-			}
-			&:last-child {
-				@include box-shadow(none);
-				> a {
-					@include border-radius(0 0 3px 3px);
-				}
-			}
-		}
-		a {
-			padding: $gutter;
-			width: $subMenuItemWidth;
-			display: block;
-			border-color: lighten($baseMenuBackground, 15%);
-			&:hover {
-				background-color: $secondaryMenuBackground;
-				border-color: $secondaryMenuBackground;
-			}
-		}
-	}
+  > li {
+    position: relative;
+    border-right: 1px solid lighten($baseMenuBackground, 20%);
+
+    > a {
+      padding: $gutter 3 * $gutter;
+      text-transform: uppercase;
+
+      // http://bit.ly/SkmL1T & currentColor keyword
+      &:first-child:nth-last-child(2):before { 
+        content:""; 
+        position: absolute;
+        border: 4px solid transparent;
+        border-bottom: 0; 
+        border-top-color: currentColor;
+        top: 50%;
+        margin-top: -2px;
+        right: 10px;  
+      }  
+    }    
+
+    &:hover {
+      > ul {
+        opacity: 1;
+        visibility: visible;
+        margin: 0;        
+      }
+
+      > a {
+        color: #fff;
+      }
+    }
+  }
 }
 
-// Last but not least: the responsive stuff
-@import "responsive";
+// Second level
+// <nav class="animenu">
+//    <ul class="animenu__nav">
+//      <li>
+//        <ul class="animenu__nav__child"></ul>
+//      </li>
+//    </ul>
+//  </nav>
+.animenu__nav__child {
+  min-width: 100%;
+  position: absolute;
+  top: 100%; left: 0;
+  z-index: 1;   
+  opacity: 0;
+  visibility: hidden;
+  margin: 2 * $gutter 0 0 0;
+  background-color: lighten($baseMenuBackground, 15%);    
+  transition: margin .15s, opacity .15s;
+
+  > li {
+    width: 100%;
+    border-bottom: 1px solid lighten($baseMenuBackground, 25%);
+
+    &:first-child > a:after {
+      content: '';
+      position: absolute;
+      height: 0; width: 0;
+      left: 1em;
+      top: -6px;
+      border: 6px solid transparent;
+      border-top: 0;
+      border-bottom-color: inherit;
+    }
+
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  a {
+    padding: $gutter;
+    width: 100%;
+    border-color: lighten($baseMenuBackground, 15%);
+
+    &:hover {
+      background-color: $secondaryMenuBackground;
+      border-color: $secondaryMenuBackground;
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .animenu__toggle {
+    display: block;
+  }
+
+  .animenu__nav,
+  .animenu__nav__child {
+    display: none;
+  }
+
+  // First level -> main menu items
+  // <nav class="animenu">
+  //    <ul class="animenu__nav">
+  //    ...
+  //    </ul>
+  //  </nav>    
+  .animenu__nav {
+    margin: $gutter 0;
+
+    > li {
+      width: 100%;
+      border-right: 0;
+      border-bottom: 1px solid lighten($baseMenuBackground, 25%);
+
+      &:last-child {
+        border: 0; 
+      }
+
+      &:first-child > a:after {
+        content: '';
+        position: absolute;
+        height: 0; width: 0;
+        left: 1em;
+        top: -6px;
+        border: 6px solid transparent;
+        border-top: 0;
+        border-bottom-color: inherit;
+      }
+
+      > a {
+        width: 100%;
+        padding: $gutter;
+        border-color: $baseMenuBackground;
+        position: relative; //dropdown caret
+      }
+    }
+
+    a:hover {
+      background-color: $secondaryMenuBackground;
+      border-color: $secondaryMenuBackground;
+      color: #fff;      
+    }
+  }
+
+  // Second level
+  // <nav class="animenu">
+  //    <ul class="animenu__nav">
+  //      <li>
+  //        <ul class="animenu__nav__child"></ul>
+  //      </li>
+  //    </ul>
+  //  </nav>              
+  .animenu__nav__child {
+    position: static;
+    background-color: lighten($baseMenuBackground, 15%);
+    margin: 0;
+    transition: none;
+    visibility: visible;
+    opacity: 1;     
+
+    > li:first-child > a:after {
+      content: none;
+    }
+
+    a {
+      padding-left: 2 * $gutter;
+      width: 100%;
+    }           
+  } // end second level
+} //end @media
+
+// Expanding the animenu
+.animenu__nav--open,
+.animenu__nav--open ul {
+  display: block;
+}
