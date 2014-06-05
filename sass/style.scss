@@ -9,8 +9,53 @@ $gutter: 10px;                      // Base gutter
 }
 
 // The classic hamburger icon
+// <button class="animenu__toggle">
+//   <span class="animenu__toggle__bar"></span>
+//   <span class="animenu__toggle__bar"></span>
+//   <span class="animenu__toggle__bar"></span>
+// </button>
 .animenu__toggle {
   display: none;
+  cursor: pointer;
+  background-color: $baseMenuBackground;
+  border: 0; 
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+
+  &:hover {
+    background-color: $secondaryMenuBackground;
+  }
+}
+
+.animenu__toggle__bar {
+  display: block;
+  width: 20px; height: 2px;
+  background-color: #fff;    
+  transition: .15s cubic-bezier(0.75, -0.55, 0.25, 1.55);
+
+  &+.animenu__toggle__bar {
+    margin-top: 4px;
+  }  
+}
+
+.animenu__toggle--active {
+  .animenu__toggle__bar {
+    margin: 0;
+    position: absolute;
+
+    &:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg);
+    }        
+  }
 }
 
 // Clear some defaults
@@ -23,7 +68,7 @@ $gutter: 10px;                      // Base gutter
 
   li, a {
     display: inline-block;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   a {
@@ -128,9 +173,11 @@ $gutter: 10px;                      // Base gutter
   }
 }
 
+// The main breakpoint is 767px
+// Adjust the first and second levels display
 @media screen and (max-width: 767px) {
   .animenu__toggle {
-    display: block;
+    display: inline-block;
   }
 
   .animenu__nav,
@@ -206,11 +253,21 @@ $gutter: 10px;                      // Base gutter
       padding-left: 2 * $gutter;
       width: 100%;
     }           
-  } // end second level
-} //end @media
+  }
+}
 
 // Expanding the animenu
-.animenu__nav--open,
-.animenu__nav--open ul {
-  display: block;
+// <nav class="animenu">
+//    <ul class="animenu__nav animenu__nav--open">
+//      <li>
+//        <ul class="animenu__nav__child"></ul>
+//      </li>
+//    </ul>
+//  </nav>
+.animenu__nav--open {
+  display: block !important;
+
+  & .animenu__nav__child {
+    display: block;
+  }
 }

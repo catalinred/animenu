@@ -6,6 +6,45 @@
 
 .animenu__toggle {
   display: none;
+  cursor: pointer;
+  background-color: #111111;
+  border: 0;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+}
+.animenu__toggle:hover {
+  background-color: #0186ba;
+}
+
+.animenu__toggle__bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  -webkit-transition: 0.15s cubic-bezier(0.75, -0.55, 0.25, 1.55);
+  transition: 0.15s cubic-bezier(0.75, -0.55, 0.25, 1.55);
+}
+.animenu__toggle__bar + .animenu__toggle__bar {
+  margin-top: 4px;
+}
+
+.animenu__toggle--active .animenu__toggle__bar {
+  margin: 0;
+  position: absolute;
+}
+.animenu__toggle--active .animenu__toggle__bar:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.animenu__toggle--active .animenu__toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+.animenu__toggle--active .animenu__toggle__bar:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .animenu ul {
@@ -15,7 +54,7 @@
 }
 .animenu li, .animenu a {
   display: inline-block;
-  font-size: 14px;
+  font-size: 15px;
 }
 .animenu a {
   color: #aaaaaa;
@@ -96,7 +135,7 @@
 
 @media screen and (max-width: 767px) {
   .animenu__toggle {
-    display: block;
+    display: inline-block;
   }
 
   .animenu__nav,
@@ -155,7 +194,9 @@
     width: 100%;
   }
 }
-.animenu__nav--open,
-.animenu__nav--open ul {
+.animenu__nav--open {
+  display: block !important;
+}
+.animenu__nav--open .animenu__nav__child {
   display: block;
 }
