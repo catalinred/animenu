@@ -47,6 +47,9 @@
   transform: rotate(-45deg);
 }
 
+.animenu {
+  display: block;
+}
 .animenu ul {
   padding: 0;
   list-style: none;
