@@ -1,6 +1,6 @@
 # Animenu
 
-A responsive dropdown navigation made with SASS and a bit of JS.
+A responsive dropdown navigation made with SASS and a bit of JS, based on this [original article](http://red-team-design.com/animenu-a-responsive-dropdown-navigation-made-with-sass/).
 
 - - -
 
