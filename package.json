@@ -1,10 +1,15 @@
 {
-  "name": "Animenu",
-  "version": "0.1.0",
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-autoprefixer": "~0.6.5",
-    "grunt-contrib-sass": "~0.7.1",
-    "grunt-contrib-watch": "~0.5.3"
+  "name": "animenu",
+  "version": "1.0.0",
+  "description": "Animenu is a responsive dropdown navigation.",
+  "scripts": {
+    "autoprefixer": "postcss -u autoprefixer -r css/*",
+    "scss": "node-sass -o css/ sass/ --output-style compressed",
+    "build": "npm run scss && npm run autoprefixer"
+  },
+  "dependencies": {
+    "autoprefixer": "^8.6.3",
+    "node-sass": "^4.9.0",
+    "postcss-cli": "^5.0.1"
   }
 }

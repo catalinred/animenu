@@ -1,52 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Animenu - a responsive dropdown navigation made with SCSS</title>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" href="css/style.css">
-  <!--[if lt IE 9]>
-    <script>
-      document.createElement('nav');
-    </script>
-    <script src="js/respond.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 
-<nav class="animenu"> 
+<nav class="animenu" role="navigation" aria-label="Menu">
   <button class="animenu__toggle">
     <span class="animenu__toggle__bar"></span>
     <span class="animenu__toggle__bar"></span>
     <span class="animenu__toggle__bar"></span>
   </button>
+
   <ul class="animenu__nav">
+    <li><a href="#">Home</a></li>
     <li>
-      <a href="#">Home</a>
-    </li>
-    <li>
-      <a href="#">Archive</a>
-      <ul class="animenu__nav__child">
-        <li><a href="">Sub Item 1</a></li>
-        <li><a href="">Sub Item 2</a></li>
-        <li><a href="">Sub Item 3</a></li>
-      </ul>
-    </li>     
-    <li>
-      <a href="#">Categories</a>
-      <ul class="animenu__nav__child">
-        <li><a href="">Sub Item 1</a></li>
-        <li><a href="">Sub Item 2</a></li>
-        <li><a href="">Sub Item 3</a></li>
+      <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Archive</a>
+      <ul class="animenu__nav__dropdown" aria-label="submenu">
+        <li><a href="#" role="menuitem">Sub Item 1</a></li>
+        <li><a href="#" role="menuitem">Sub Item 2</a></li>
+        <li><a href="#" role="menuitem">Sub Item 3</a></li>
       </ul>
     </li>
     <li>
-      <a href="#">About</a>
+      <a href="#" class="animenu__nav__hasDropdown" aria-haspopup="true">Categories</a>
+      <ul class="animenu__nav__dropdown" aria-label="submenu">
+        <li><a href="#" role="menuitem">Sub Item 1</a></li>
+        <li><a href="#" role="menuitem">Sub Item 2</a></li>
+        <li><a href="#" role="menuitem">Sub Item 3</a></li>
+      </ul>
     </li>
-    <li>
-      <a href="#">Contact</a>
-    </li>                 
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
   </ul>
 </nav>
 

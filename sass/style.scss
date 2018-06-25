@@ -64,7 +64,12 @@ $gutter: 10px;                      // Base gutter
   ul {
     padding: 0;
     list-style: none;    
-    font: 0px 'Open Sans', Arial, Helvetica;    
+    font: 0 -apple-system,
+            BlinkMacSystemFont,   
+            "Segoe UI",          
+            "Roboto",
+            "Helvetica Neue", Arial, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";    
   }
 
   li, a {
@@ -93,22 +98,11 @@ $gutter: 10px;                      // Base gutter
 
     > a {
       padding: $gutter 3 * $gutter;
-      text-transform: uppercase;
-
-      // http://bit.ly/SkmL1T & currentColor keyword
-      &:first-child:nth-last-child(2):before { 
-        content:""; 
-        position: absolute;
-        border: 4px solid transparent;
-        border-bottom: 0; 
-        border-top-color: currentColor;
-        top: 50%;
-        margin-top: -2px;
-        right: 10px;  
-      }  
+      text-transform: uppercase; 
     }    
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       > ul {
         opacity: 1;
         visibility: visible;
@@ -120,17 +114,28 @@ $gutter: 10px;                      // Base gutter
       }
     }
   }
+
+  &__hasDropdown:before { 
+    content:""; 
+    position: absolute;
+    border: 4px solid transparent;
+    border-bottom: 0; 
+    border-top-color: currentColor;
+    top: 50%;
+    margin-top: -2px;
+    right: 10px;  
+  }   
 }
 
 // Second level
 // <nav class="animenu">
 //    <ul class="animenu__nav">
 //      <li>
-//        <ul class="animenu__nav__child"></ul>
+//        <ul class="animenu__nav__dropdown"></ul>
 //      </li>
 //    </ul>
 //  </nav>
-.animenu__nav__child {
+.animenu__nav__dropdown {
   min-width: 100%;
   position: absolute;
   top: 100%; left: 0;
@@ -166,7 +171,8 @@ $gutter: 10px;                      // Base gutter
     width: 100%;
     border-color: lighten($baseMenuBackground, 15%);
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       background-color: $secondaryMenuBackground;
       border-color: $secondaryMenuBackground;
       color: #fff;
@@ -182,7 +188,7 @@ $gutter: 10px;                      // Base gutter
   }
 
   .animenu__nav,
-  .animenu__nav__child {
+  .animenu__nav__dropdown {
     display: none;
   }
 
@@ -234,11 +240,11 @@ $gutter: 10px;                      // Base gutter
   // <nav class="animenu">
   //    <ul class="animenu__nav">
   //      <li>
-  //        <ul class="animenu__nav__child"></ul>
+  //        <ul class="animenu__nav__dropdown"></ul>
   //      </li>
   //    </ul>
   //  </nav>              
-  .animenu__nav__child {
+  .animenu__nav__dropdown {
     position: static;
     background-color: lighten($baseMenuBackground, 15%);
     margin: 0;
@@ -261,14 +267,14 @@ $gutter: 10px;                      // Base gutter
 // <nav class="animenu">
 //    <ul class="animenu__nav animenu__nav--open">
 //      <li>
-//        <ul class="animenu__nav__child"></ul>
+//        <ul class="animenu__nav__dropdown"></ul>
 //      </li>
 //    </ul>
 //  </nav>
 .animenu__nav--open {
   display: block !important;
 
-  & .animenu__nav__child {
+  & .animenu__nav__dropdown {
     display: block;
   }
 }
