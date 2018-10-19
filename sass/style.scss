@@ -9,12 +9,12 @@ $gutter: 10px;                      // Base gutter
 }
 
 // The classic hamburger icon
-// <button class="animenu__toggle">
-//   <span class="animenu__toggle__bar"></span>
-//   <span class="animenu__toggle__bar"></span>
-//   <span class="animenu__toggle__bar"></span>
+// <button class="animenu__btn">
+//   <span class="animenu__btn__bar"></span>
+//   <span class="animenu__btn__bar"></span>
+//   <span class="animenu__btn__bar"></span>
 // </button>
-.animenu__toggle {
+.animenu__btn {
   display: none;
   cursor: pointer;
   background-color: $baseMenuBackground;
@@ -28,19 +28,19 @@ $gutter: 10px;                      // Base gutter
   }
 }
 
-.animenu__toggle__bar {
+.animenu__btn__bar {
   display: block;
   width: 20px; height: 2px;
   background-color: #fff;    
   transition: .15s cubic-bezier(0.75, -0.55, 0.25, 1.55);
 
-  &+.animenu__toggle__bar {
+  &+.animenu__btn__bar {
     margin-top: 4px;
   }  
 }
 
-.animenu__toggle--active {
-  .animenu__toggle__bar {
+.animenu__btn--active {
+  .animenu__btn__bar {
     margin: 0;
     position: absolute;
 
@@ -183,7 +183,7 @@ $gutter: 10px;                      // Base gutter
 // The main breakpoint is 767px
 // Adjust the first and second levels display
 @media screen and (max-width: 767px) {
-  .animenu__toggle {
+  .animenu__btn {
     display: inline-block;
   }
 
