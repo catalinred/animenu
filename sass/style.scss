@@ -101,8 +101,7 @@ $gutter: 10px;                      // Base gutter
       text-transform: uppercase; 
     }    
 
-    &:hover,
-    &:focus-within {
+    &:hover {
       > ul {
         opacity: 1;
         visibility: visible;
@@ -113,6 +112,20 @@ $gutter: 10px;                      // Base gutter
         color: #fff;
       }
     }
+
+    // Duplicate stuff due to 
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/16651302/
+    &:focus-within {
+      > ul {
+        opacity: 1;
+        visibility: visible;
+        margin: 0;        
+      }
+      
+      > a {
+        color: #fff;
+      }
+    }    
   }
 
   &__hasDropdown:before { 
@@ -171,12 +184,19 @@ $gutter: 10px;                      // Base gutter
     width: 100%;
     border-color: lighten($baseMenuBackground, 15%);
 
-    &:hover,
-    &:focus-within {
+    &:hover {
       background-color: $secondaryMenuBackground;
       border-color: $secondaryMenuBackground;
       color: #fff;
     }
+
+    // Duplicate stuff due to 
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/16651302/    
+    &:focus-within {
+      background-color: $secondaryMenuBackground;
+      border-color: $secondaryMenuBackground;
+      color: #fff;
+    }    
   }
 }
 
